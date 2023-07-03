@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PeriodTracker.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PeriodTracker"
+    xmlns:res="clr-namespace:PeriodTracker.Resources"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="Violet">
+
+    <Shell.FlyoutHeader>
+        <Grid>
+            <Image Source="flower.png" BackgroundColor="Pink" MaximumHeightRequest="100"/>
+            <Label Text="Period Tracker" VerticalOptions="End" HorizontalOptions="End" TextColor="DarkViolet" FontSize="Large"/>
+        </Grid>
+    </Shell.FlyoutHeader>
+    <FlyoutItem Title="{x:Static res:AppRes.MainPageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppRes.ComplementPageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:ComplementPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppRes.HistoryPageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:HistoryPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppRes.StatisticsPageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppRes.FuturePageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:FutureDatesPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="{x:Static res:AppRes.DemoPageTitle}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:DemoPage}" />
+        </Tab>
+    </FlyoutItem>
+    <Shell.FlyoutFooter>
+        <Label Text="{Binding AppVersion}"/>
+    </Shell.FlyoutFooter>
+
+</Shell>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeriodTracker.ComplementPage"
+             xmlns:res="clr-namespace:PeriodTracker.Resources"
+             xmlns:local="clr-namespace:PeriodTracker"
+             Title="{x:Static res:AppRes.ComplementPageTitle }"
+             BackgroundColor="Pink">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <DatePicker Grid.Row="0" MaximumDate="{Binding MaximumDisplayedDate}" Date="{Binding SelectedDate}" HorizontalOptions="Center"/>
+        <Button Grid.Row="1" Text="{x:Static res:AppRes.ComplementButton}" Command="{Binding SaveDateCommand}" HeightRequest="50"/>
+        <local:DemoPanel Grid.Row="2"/>
+    </Grid>
+</ContentPage>

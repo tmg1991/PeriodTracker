@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeriodTracker.FutureDatesPage"
+             xmlns:local="clr-namespace:PeriodTracker"
+             xmlns:res="clr-namespace:PeriodTracker.Resources"
+             Title="{x:Static res:AppRes.FuturePageTitle }"
+             BackgroundColor="Pink">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="dateTemplate">
+                <TextCell Text="{Binding ., StringFormat='{}{0:yyyy MMMM dd}'}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding FutureDates}" SelectionMode="None" ItemTemplate="{StaticResource dateTemplate}" HorizontalOptions="Center"/>
+        <local:DemoPanel Grid.Row="1"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeriodTracker.HistoryPage"
+             xmlns:res="clr-namespace:PeriodTracker.Resources"
+             xmlns:local="clr-namespace:PeriodTracker"
+             Title="{x:Static res:AppRes.HistoryPageTitle }"
+             BackgroundColor="Pink">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="historyTemplate">
+                <Frame BorderColor="Gray" Margin="3" BackgroundColor="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="{Binding StartTime, StringFormat='{}{0:yyyy/MMMM/dd}'}" HorizontalTextAlignment="Start" Margin="5" Shadow="{x:StaticResource Key=shadow}"/>
+                        <Label Grid.Column="1" Text="{Binding ElapsedDays}" HorizontalTextAlignment="Start" Margin="5" Shadow="{x:StaticResource Key=shadow}"/>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+            <Shadow x:Key="shadow" Brush="{AppThemeBinding Dark=White, Light=Gray}" Offset="10,10" Opacity="0.5"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Text="{x:Static res:AppRes.HistoryDate}"/>
+        <Label Grid.Row="0" Grid.Column="1" Text="{x:Static res:AppRes.HistoryElapsedDays}"/>
+
+        <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding PeriodItems}" ItemTemplate="{x:StaticResource historyTemplate}" SelectionMode="None"/>
+        <local:DemoPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="Center"/>
+    </Grid>
+</ContentPage>

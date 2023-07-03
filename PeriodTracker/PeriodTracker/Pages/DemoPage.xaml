@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeriodTracker.DemoPage"
+             xmlns:local="clr-namespace:PeriodTracker"
+             xmlns:res="clr-namespace:PeriodTracker.Resources"
+             Title="{x:Static res:AppRes.DemoPageTitle }"
+             BackgroundColor="Pink">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+            Text="{x:Static res:AppRes.DemoDescription}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+        <Button Grid.Row="1" Text="{x:Static res:AppRes.DemoButtonText}" Command="{Binding SetDemoDataBaseCommand}" HeightRequest="50"/>
+        <local:DemoPanel Grid.Row="2"/>
+    </Grid>
+</ContentPage>
