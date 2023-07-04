@@ -38,9 +38,6 @@ namespace PeriodTracker
         {
             RunStatisticsInTask();
         }
-
-        
-
         public async Task RunStatistics()
         {
             _connection = _dataBaseManager.GetDataBaseConnection();
@@ -48,7 +45,7 @@ namespace PeriodTracker
 
             TimeOfLastPeriod = periodItems.OrderByDescending(_ => _.StartTime).FirstOrDefault()?.StartTime ?? DateTime.MinValue;
             TimeOfNextNominalPeriod = TimeOfLastPeriod == DateTime.MinValue ? DateTime.MinValue : TimeOfLastPeriod + TimeSpan.FromDays(NominalPeriodFrequency);
-            RemainingNominalDays = TimeOfNextNominalPeriod == DateTime.MinValue ? int.MinValue : (TimeOfNextNominalPeriod - TimeOfLastPeriod).Days;
+            RemainingNominalDays = TimeOfNextNominalPeriod == DateTime.MinValue ? int.MinValue : (TimeOfNextNominalPeriod - DateTime.Today).Days;
 
             StatisticsChanged?.Invoke(this, EventArgs.Empty);
         }
