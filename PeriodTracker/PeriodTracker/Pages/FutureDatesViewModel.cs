@@ -9,8 +9,6 @@ namespace PeriodTracker
 {
     public partial class FutureDatesViewModel : ViewModelBase
     {
-        private readonly IPeriodManager _periodManager;
-
         private ObservableCollection<DateTime> _futureDates;
         public ObservableCollection<DateTime> FutureDates
         {
@@ -19,9 +17,8 @@ namespace PeriodTracker
         }
 
 
-        public FutureDatesViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager)
+        public FutureDatesViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
-            _periodManager = periodManager;
             UpdateFutureDates();
         }
 
@@ -33,7 +30,7 @@ namespace PeriodTracker
 
         private void UpdateFutureDates()
         {
-            FutureDates = new ObservableCollection<DateTime>(_periodManager.GetNominalFutureDates(12));
+            FutureDates = new ObservableCollection<DateTime>(PeriodManager.GetNominalFutureDates(12));
         }
     }
 }

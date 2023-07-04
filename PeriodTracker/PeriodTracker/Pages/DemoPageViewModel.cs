@@ -5,7 +5,7 @@ namespace PeriodTracker
     public partial class DemoPageViewModel : ViewModelBase
     {
 
-        public DemoPageViewModel(IDataBaseManager dataBaseManager) : base(dataBaseManager)
+        public DemoPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
             
         }

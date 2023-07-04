@@ -9,8 +9,11 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="dateTemplate">
-                <TextCell Text="{Binding ., StringFormat='{}{0:yyyy MMMM dd}'}"/>
+                <Frame BorderColor="Gray" Margin="3" BackgroundColor="Transparent">
+                    <Label Text="{Binding ., StringFormat='{}{0:yyyy MMMM dd}'}" Margin="5" Shadow="{x:StaticResource Key=shadow}"/>
+                </Frame>
             </DataTemplate>
+            <Shadow x:Key="shadow" Brush="{AppThemeBinding Dark=White, Light=Gray}" Offset="10,10" Opacity="0.5"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -19,7 +22,7 @@
             <RowDefinition Height="7*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" ItemsSource="{Binding FutureDates}" SelectionMode="None" ItemTemplate="{StaticResource dateTemplate}" HorizontalOptions="Center"/>
+        <CollectionView Grid.Row="0" ItemsSource="{Binding FutureDates}" SelectionMode="None" ItemTemplate="{StaticResource dateTemplate}" HorizontalOptions="Center"/>
         <local:DemoPanel Grid.Row="1"/>
     </Grid>
 </ContentPage>

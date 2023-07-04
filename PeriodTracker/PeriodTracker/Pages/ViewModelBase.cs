@@ -7,6 +7,7 @@ namespace PeriodTracker
     public class ViewModelBase : ObservableObject, INotifyPropertyChanged
     {
         protected readonly IDataBaseManager DataBaseManager;
+        protected readonly IPeriodManager PeriodManager;
 
         private bool _isAppInDemoMode;
         public bool IsAppInDemoMode
@@ -17,9 +18,10 @@ namespace PeriodTracker
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ViewModelBase(IDataBaseManager dataBaseManager)
+        public ViewModelBase(IDataBaseManager dataBaseManager, IPeriodManager periodManager)
         {
             DataBaseManager = dataBaseManager;
+            PeriodManager = periodManager;
             DataBaseManager.DemoModeChanged += DataBaseManager_DemoModeChanged;
         }
 
@@ -31,6 +33,7 @@ namespace PeriodTracker
         public virtual void OnAppearing()
         {
             IsAppInDemoMode = DataBaseManager.IsAppInDemoMode();
+            Task.Run(PeriodManager.RunStatistics).Wait();
         }
 
         private void DataBaseManager_DemoModeChanged(object sender, EventArgs e)

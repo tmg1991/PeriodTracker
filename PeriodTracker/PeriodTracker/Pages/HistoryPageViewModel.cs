@@ -6,7 +6,7 @@ namespace PeriodTracker
     {
         public ObservableCollection<IPeriodItem> PeriodItems { get; set; } = new ObservableCollection<IPeriodItem>();
 
-        public HistoryPageViewModel(IDataBaseManager dataBaseManager) : base(dataBaseManager)
+        public HistoryPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
             Load();
         }

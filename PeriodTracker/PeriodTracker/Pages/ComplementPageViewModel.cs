@@ -9,8 +9,6 @@ namespace PeriodTracker
 {
     public partial class ComplementPageViewModel : ViewModelBase
     {
-        private readonly IPeriodManager _periodManager;
-
         private DateTime _maximumDisplayedDate;
         public DateTime MaximumDisplayedDate
         {
@@ -26,17 +24,16 @@ namespace PeriodTracker
         }
 
 
-        public ComplementPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager)
+        public ComplementPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
             MaximumDisplayedDate = DateTime.Today;
             SelectedDate = DateTime.Today;
-            _periodManager = periodManager;
         }
 
         [RelayCommand]
         public async Task SaveDate()
         { 
-            await _periodManager.SaveDate(SelectedDate);
+            await PeriodManager.SaveDate(SelectedDate);
         }
     }
 }

@@ -1,16 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PeriodTracker
 {
     public partial class MainPageViewModel : ViewModelBase
     {
-        private readonly IPeriodManager _periodManager;
-
         private DateTime _lastOccasion;
         public DateTime LastOccasion
         {
@@ -35,10 +28,9 @@ namespace PeriodTracker
 
 
 
-        public MainPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager)
+        public MainPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
-            _periodManager = periodManager;
-            _periodManager.StatisticsChanged += PeriodManager_StatisticsChanged;
+            PeriodManager.StatisticsChanged += PeriodManager_StatisticsChanged;
         }
 
         private void PeriodManager_StatisticsChanged(object sender, EventArgs e)
@@ -49,7 +41,7 @@ namespace PeriodTracker
         [RelayCommand]
         public async Task SaveToday()
         {
-            await _periodManager.SaveDate(DateTime.Today);
+            await PeriodManager.SaveDate(DateTime.Today);
         }
 
         public override void OnAppearing()
@@ -60,9 +52,9 @@ namespace PeriodTracker
 
         private void UpdateValues()
         {
-            LastOccasion = _periodManager.TimeOfLastPeriod;
-            NextOccasion = _periodManager.TimeOfNextNominalPeriod;
-            RemainingDays = _periodManager.RemainingNominalDays;
+            LastOccasion = PeriodManager.TimeOfLastPeriod;
+            NextOccasion = PeriodManager.TimeOfNextNominalPeriod;
+            RemainingDays = PeriodManager.RemainingNominalDays;
         }
 
     }
