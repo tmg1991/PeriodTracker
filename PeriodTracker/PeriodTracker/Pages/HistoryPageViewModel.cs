@@ -17,10 +17,10 @@ namespace PeriodTracker
             Load();
         }
 
-        private async Task Load()
+        private void Load()
         {
             PeriodItems.Clear();
-            var periodItems = await PeriodManager.GetHistoricalPeriodItems();
+            var periodItems = PeriodManager.GetHistoricalPeriodItems();
 
             foreach (var item in periodItems)
             {

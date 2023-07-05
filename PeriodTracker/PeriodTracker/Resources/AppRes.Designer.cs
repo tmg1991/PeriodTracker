@@ -61,6 +61,15 @@ namespace PeriodTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average.
+        /// </summary>
+        internal static string Average {
+            get {
+                return ResourceManager.GetString("Average", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complement date.
         /// </summary>
         internal static string ComplementButton {
@@ -162,6 +171,24 @@ namespace PeriodTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum.
+        /// </summary>
+        internal static string Maximum {
+            get {
+                return ResourceManager.GetString("Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum.
+        /// </summary>
+        internal static string Minimum {
+            get {
+                return ResourceManager.GetString("Minimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next nominal occasion.
         /// </summary>
         internal static string NextNominalDate {
@@ -176,6 +203,15 @@ namespace PeriodTracker.Resources {
         internal static string NextPersonalizedDate {
             get {
                 return ResourceManager.GetString("NextPersonalizedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Range.
+        /// </summary>
+        internal static string Range {
+            get {
+                return ResourceManager.GetString("Range", resourceCulture);
             }
         }
         
@@ -212,6 +248,15 @@ namespace PeriodTracker.Resources {
         internal static string StatisticsPageTitle {
             get {
                 return ResourceManager.GetString("StatisticsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard deviation [%].
+        /// </summary>
+        internal static string StdDev {
+            get {
+                return ResourceManager.GetString("StdDev", resourceCulture);
             }
         }
     }

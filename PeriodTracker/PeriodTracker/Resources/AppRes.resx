@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Average" xml:space="preserve">
+    <value>Average</value>
+  </data>
   <data name="ComplementButton" xml:space="preserve">
     <value>Complement date</value>
   </data>
@@ -152,11 +155,20 @@ Demo mode will be left in case the app loses focus or is sent to background.</va
   <data name="MainPageTitle" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
   <data name="NextNominalDate" xml:space="preserve">
     <value>Next nominal occasion</value>
   </data>
   <data name="NextPersonalizedDate" xml:space="preserve">
     <value>Next personalized occasion</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Range</value>
   </data>
   <data name="RemainingNominalDays" xml:space="preserve">
     <value>Remaining nominal days</value>
@@ -169,5 +181,8 @@ Demo mode will be left in case the app loses focus or is sent to background.</va
   </data>
   <data name="StatisticsPageTitle" xml:space="preserve">
     <value>Statistics</value>
+  </data>
+  <data name="StdDev" xml:space="preserve">
+    <value>Standard deviation [%]</value>
   </data>
 </root>

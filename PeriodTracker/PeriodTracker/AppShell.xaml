@@ -31,7 +31,7 @@
     </FlyoutItem>
     <FlyoutItem Title="{x:Static res:AppRes.StatisticsPageTitle}">
         <Tab>
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:StatisticsPage}" />
         </Tab>
     </FlyoutItem>
     <FlyoutItem Title="{x:Static res:AppRes.FuturePageTitle}">

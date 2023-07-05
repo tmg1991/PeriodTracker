@@ -11,6 +11,7 @@ namespace PeriodTracker
     {
         private readonly IDataBaseManager _dataBaseManager;
         private IDataBaseConnection _connection;
+        private IEnumerable<PeriodItem> _historicalPeriodItems;
 
         public event EventHandler<EventArgs> StatisticsChanged;
         public DateTime TimeOfLastPeriod { get; private set; }
@@ -27,6 +28,12 @@ namespace PeriodTracker
 
         public int PersonalizedPeriodFrequency => throw new NotImplementedException();
 
+        public double Average { get; private set; }
+        public double StdDeviation { get; private set; }
+        public int Minimum{ get; private set; }
+        public int Maximum{ get; private set; }
+        public int Range { get; private set; }
+
         public PeriodManager(IDataBaseManager dataBaseManager)
         {
             _dataBaseManager = dataBaseManager;
@@ -41,11 +48,13 @@ namespace PeriodTracker
         public async Task RunStatistics()
         {
             _connection = _dataBaseManager.GetDataBaseConnection();
-            var periodItems = await _connection.GetTable();
+            _historicalPeriodItems = await _connection.GetTable();
 
-            TimeOfLastPeriod = periodItems.OrderByDescending(_ => _.StartTime).FirstOrDefault()?.StartTime ?? DateTime.MinValue;
+            TimeOfLastPeriod = _historicalPeriodItems.OrderByDescending(_ => _.StartTime).FirstOrDefault()?.StartTime ?? DateTime.MinValue;
             TimeOfNextNominalPeriod = TimeOfLastPeriod == DateTime.MinValue ? DateTime.MinValue : TimeOfLastPeriod + TimeSpan.FromDays(NominalPeriodFrequency);
             RemainingNominalDays = TimeOfNextNominalPeriod == DateTime.MinValue ? int.MinValue : (TimeOfNextNominalPeriod - DateTime.Today).Days;
+
+            EvaluateStats();
 
             StatisticsChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -57,10 +66,9 @@ namespace PeriodTracker
             await RunStatistics();
         }
 
-        public async Task<IEnumerable<PeriodItem>> GetHistoricalPeriodItems()
+        public IEnumerable<PeriodItem> GetHistoricalPeriodItems()
         {
-            var periodItems = await _dataBaseManager.GetDataBaseConnection().GetTable();
-            return periodItems.ToList();
+            return _historicalPeriodItems;
         }
 
         public IEnumerable<DateTime> GetNominalFutureDates(int count)
@@ -88,6 +96,28 @@ namespace PeriodTracker
         private void RunStatisticsInTask()
         {
             Task.Run(async () => await RunStatistics()).Wait();
+        }
+
+        private void EvaluateStats()
+        {
+            Average = _historicalPeriodItems?.Select(_ => _.ElapsedDays)?.Average() ?? double.NaN;
+            StdDeviation = CalculateStdDev(_historicalPeriodItems?.Select(_ => _.ElapsedDays).ToArray());
+            var pastElapsedDays = _historicalPeriodItems?.Select(_ => _.ElapsedDays)?.Where(_ => _ != 0)?.ToArray();
+            Minimum = (pastElapsedDays != null && pastElapsedDays.Any()) ? pastElapsedDays.Min() : 0;
+            Maximum = (pastElapsedDays != null && pastElapsedDays.Any()) ? pastElapsedDays.Max() : 0;
+            Range = Maximum - Minimum;
+
+            double CalculateStdDev(IEnumerable<int> numbers)
+            {
+                if(numbers.Count() < 1)
+                {
+                    return double.NaN;
+                }
+                double average = numbers.Average();
+                double sumOfSquaresOfDifferences = numbers.Select(_ => (_ - average) * (_ - average)).Sum();
+                double sd = Math.Sqrt(sumOfSquaresOfDifferences / (numbers.Count() - 1));
+                return sd;
+            }
         }
     }
 }
