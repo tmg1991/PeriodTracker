@@ -20,7 +20,7 @@ namespace PeriodTracker
         private async Task Load()
         {
             PeriodItems.Clear();
-            var periodItems = await DataBaseManager.GetDataBaseConnection().GetTable();
+            var periodItems = await PeriodManager.GetHistoricalPeriodItems();
 
             foreach (var item in periodItems)
             {

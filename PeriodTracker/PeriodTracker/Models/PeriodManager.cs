@@ -57,6 +57,12 @@ namespace PeriodTracker
             await RunStatistics();
         }
 
+        public async Task<IEnumerable<PeriodItem>> GetHistoricalPeriodItems()
+        {
+            var periodItems = await _dataBaseManager.GetDataBaseConnection().GetTable();
+            return periodItems.ToList();
+        }
+
         public IEnumerable<DateTime> GetNominalFutureDates(int count)
         {
             List<DateTime> futureDates = new List<DateTime>();
