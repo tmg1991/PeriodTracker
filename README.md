@@ -4,5 +4,5 @@ This app can be used to track your periods. The day of the occurance can be stor
 
 ## Changelog
 
-**v1.1.0**: Android widget is implemented
+**v1.1.0**: Android widget is implemented  
 **v1.0.0**: initial version of the app supporting basic functionalities
