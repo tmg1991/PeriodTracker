@@ -48,9 +48,9 @@ namespace PeriodTracker
         public async Task RunStatistics()
         {
             _connection = _dataBaseManager.GetDataBaseConnection();
-            _historicalPeriodItems = await _connection.GetTable();
+            _historicalPeriodItems = await GetHistoricalPeriodItems();
 
-            TimeOfLastPeriod = _historicalPeriodItems.OrderByDescending(_ => _.StartTime).FirstOrDefault()?.StartTime ?? DateTime.MinValue;
+            TimeOfLastPeriod = _historicalPeriodItems?.OrderByDescending(_ => _.StartTime)?.FirstOrDefault()?.StartTime ?? DateTime.MinValue;
             TimeOfNextNominalPeriod = TimeOfLastPeriod == DateTime.MinValue ? DateTime.MinValue : TimeOfLastPeriod + TimeSpan.FromDays(NominalPeriodFrequency);
             RemainingNominalDays = TimeOfNextNominalPeriod == DateTime.MinValue ? int.MinValue : (TimeOfNextNominalPeriod - DateTime.Today).Days;
 
@@ -63,12 +63,25 @@ namespace PeriodTracker
         {
             var elapsedDays = TimeOfLastPeriod == DateTime.MinValue ? 0 : (date - TimeOfLastPeriod).Days;
             await _connection.Insert(new PeriodItem(date, elapsedDays));
+            var items = await GetHistoricalPeriodItems();
+
+            foreach (var item in items)
+            {
+                if(item.StartTime < date)
+                {
+                    continue;
+                }
+
+                var previousItem = items.TakeWhile(_ => _.StartTime < item.StartTime).LastOrDefault();
+                item.ElapsedDays = previousItem == null ? 0 : (item.StartTime - previousItem.StartTime).Days;
+                await _connection.UpdateItem(item);
+            }
             await RunStatistics();
         }
 
-        public IEnumerable<PeriodItem> GetHistoricalPeriodItems()
+        public async Task<IEnumerable<PeriodItem>> GetHistoricalPeriodItems()
         {
-            return _historicalPeriodItems;
+            return (await _connection.GetTable()).OrderBy(_ => _.StartTime);
         }
 
         public IEnumerable<DateTime> GetNominalFutureDates(int count)

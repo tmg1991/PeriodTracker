@@ -16,7 +16,7 @@
         int Range { get; }
         Task SaveDate(DateTime date);
         Task RunStatistics();
-        IEnumerable<PeriodItem> GetHistoricalPeriodItems();
+        Task<IEnumerable<PeriodItem>> GetHistoricalPeriodItems();
         IEnumerable<DateTime> GetNominalFutureDates(int count);
         IEnumerable<DateTime> GetPersonalizedFutureDates(int count);
         event EventHandler<EventArgs> StatisticsChanged;

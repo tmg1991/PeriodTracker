@@ -20,7 +20,10 @@ namespace PeriodTracker
         private void Load()
         {
             PeriodItems.Clear();
-            var periodItems = PeriodManager.GetHistoricalPeriodItems();
+            IEnumerable<PeriodItem> periodItems = null;
+            Task.Run(async () => { 
+                periodItems = await PeriodManager.GetHistoricalPeriodItems();
+            }).Wait();
 
             foreach (var item in periodItems)
             {

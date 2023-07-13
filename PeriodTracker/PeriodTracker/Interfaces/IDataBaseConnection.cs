@@ -6,5 +6,6 @@ namespace PeriodTracker
     {
         Task Insert(IPeriodItem periodItem);
         Task<TableQuery<PeriodItem>> GetTable();
+        Task UpdateItem(IPeriodItem periodItem);
     }
 }
