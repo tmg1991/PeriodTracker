@@ -50,6 +50,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <Compile Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <EmbeddedResource Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <MauiCss Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <MauiXaml Remove="Platforms\Android\Resources\NewFolder\**" />
+	  <None Remove="Platforms\Android\Resources\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\values\strings.xml" />
+	  <None Remove="Platforms\Android\Resources\xml\widget_circle.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
