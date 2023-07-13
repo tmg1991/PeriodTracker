@@ -137,6 +137,9 @@ Demo mode will be left in case the app loses focus or is sent to background.</va
   <data name="DemoPageTitle" xml:space="preserve">
     <value>Demo</value>
   </data>
+  <data name="DialogButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="FuturePageTitle" xml:space="preserve">
     <value>Prediction</value>
   </data>
@@ -175,6 +178,9 @@ Demo mode will be left in case the app loses focus or is sent to background.</va
   </data>
   <data name="RemainingPersonalizedDate" xml:space="preserve">
     <value>Remaining personalized days</value>
+  </data>
+  <data name="SavedDialogMessage" xml:space="preserve">
+    <value>Date has been saved</value>
   </data>
   <data name="SaveToday" xml:space="preserve">
     <value>Save today</value>

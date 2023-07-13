@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using PeriodTracker.Resources;
 
 namespace PeriodTracker
 {
@@ -41,7 +42,9 @@ namespace PeriodTracker
         [RelayCommand]
         public async Task SaveToday()
         {
-            await PeriodManager.SaveDate(DateTime.Today);
+            var date = DateTime.Today;
+            await PeriodManager.SaveDate(date);
+            await Shell.Current.DisplayAlert(date.ToString("yyyy'-'MMMM'-'dd"), AppRes.SavedDialogMessage, AppRes.DialogButton);
         }
 
         public override void OnAppearing()

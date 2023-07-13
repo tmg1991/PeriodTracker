@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using PeriodTracker.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,7 @@ namespace PeriodTracker
         public async Task SaveDate()
         { 
             await PeriodManager.SaveDate(SelectedDate);
+            await Shell.Current.DisplayAlert(SelectedDate.ToString("yyyy'-'MMMM'-'dd"), AppRes.SavedDialogMessage, AppRes.DialogButton);
         }
     }
 }

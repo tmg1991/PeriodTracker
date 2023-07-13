@@ -117,6 +117,15 @@ namespace PeriodTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string DialogButton {
+            get {
+                return ResourceManager.GetString("DialogButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prediction.
         /// </summary>
         internal static string FuturePageTitle {
@@ -230,6 +239,15 @@ namespace PeriodTracker.Resources {
         internal static string RemainingPersonalizedDate {
             get {
                 return ResourceManager.GetString("RemainingPersonalizedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date has been saved.
+        /// </summary>
+        internal static string SavedDialogMessage {
+            get {
+                return ResourceManager.GetString("SavedDialogMessage", resourceCulture);
             }
         }
         
