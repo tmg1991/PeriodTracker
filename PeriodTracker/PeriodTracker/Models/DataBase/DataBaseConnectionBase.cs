@@ -16,6 +16,11 @@ namespace PeriodTracker
         }
         public async Task Insert(IPeriodItem periodItem)
         {
+            var persistedItems = await GetTable();
+            if (persistedItems?.ToArray() != null && persistedItems.Any(_ => _.StartTime == periodItem.StartTime))
+            {
+                return;
+            }
             await Task.Run(() => { 
                 DataBaseConnection.Insert(periodItem);
             });
@@ -29,6 +34,14 @@ namespace PeriodTracker
                     return DataBaseConnection.Table<PeriodItem>();
                 });
             return periodItems;
+        }
+
+        public async Task UpdateItem(IPeriodItem periodItem)
+        {
+            await Task.Run(() =>
+            {
+                DataBaseConnection.Update(periodItem);
+            });
         }
     }
 }
