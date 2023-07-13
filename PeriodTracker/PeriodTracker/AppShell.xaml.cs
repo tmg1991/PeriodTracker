@@ -5,7 +5,7 @@ public partial class AppShell : Shell
     public string AppVersion { get; set; }
     public AppShell()
 	{
-		var version = "1.1.0";
+		var version = "1.2.0";
 		AppVersion = $"Period Tracker v{version}";
 		InitializeComponent();
 		BindingContext = this;
