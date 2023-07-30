@@ -120,6 +120,9 @@
   <data name="Average" xml:space="preserve">
     <value>Average</value>
   </data>
+  <data name="ChartTitle" xml:space="preserve">
+    <value>Length of past periods</value>
+  </data>
   <data name="ComplementButton" xml:space="preserve">
     <value>Complement date</value>
   </data>

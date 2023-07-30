@@ -120,6 +120,9 @@
   <data name="Average" xml:space="preserve">
     <value>Átlag</value>
   </data>
+  <data name="ChartTitle" xml:space="preserve">
+    <value>Eddigi ciklusok hossza</value>
+  </data>
   <data name="ComplementButton" xml:space="preserve">
     <value>Korábbi dátum pótlása</value>
   </data>

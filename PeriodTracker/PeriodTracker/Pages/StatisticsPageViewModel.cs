@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace PeriodTracker
 {
     public partial class StatisticsPageViewModel : ViewModelBase
     {
+        private ISeries[] _series;
+        public ISeries[] Series
+        {
+            get { return _series; }
+            set { _series = value; NotifyPropertyChanged(); }
+        }
+
         private double _average;
         public double Average
         {
@@ -49,9 +55,16 @@ namespace PeriodTracker
             Update();
         }
 
-        private void PeriodManager_StatisticsChanged(object sender, EventArgs e)
+        public override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await UpdateChart();
+        }
+
+        private async void PeriodManager_StatisticsChanged(object sender, EventArgs e)
         {
             Update();
+            await UpdateChart();
         }
 
         private void Update()
@@ -61,6 +74,25 @@ namespace PeriodTracker
             Minimum = PeriodManager.Minimum;
             Maximum = PeriodManager.Maximum;
             Range = PeriodManager.Range;
+        }
+
+        private async Task UpdateChart()
+        {
+            var historicalItems = await PeriodManager.GetHistoricalPeriodItems();
+            var historicalPeriodLengths = historicalItems
+                .Where(_ => _.ElapsedDays != 0)
+                .Select(_ => (double)_.ElapsedDays)
+                .ToArray();
+            Series = new ISeries[]
+        {
+            new LineSeries<double>
+            {
+                Values = historicalPeriodLengths,
+                Fill = null,
+                Stroke = new SolidColorPaint(new SKColor(252,98,193)) { StrokeThickness = 6 },
+                GeometryStroke = new SolidColorPaint(new SKColor(204,34,242)) { StrokeThickness = 6 }
+            }
+        };
         }
     }
 }

@@ -70,6 +70,15 @@ namespace PeriodTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Length of past periods.
+        /// </summary>
+        internal static string ChartTitle {
+            get {
+                return ResourceManager.GetString("ChartTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complement date.
         /// </summary>
         internal static string ComplementButton {
