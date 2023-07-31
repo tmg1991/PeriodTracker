@@ -129,6 +129,12 @@
   <data name="ComplementPageTitle" xml:space="preserve">
     <value>Dátum pótlása</value>
   </data>
+  <data name="DeleteDateQuestion" xml:space="preserve">
+    <value>Valóban törölni szeretnéd a dátumot?</value>
+  </data>
+  <data name="DeleteDateTitle" xml:space="preserve">
+    <value>Dátum törlése</value>
+  </data>
   <data name="DemoButtonText" xml:space="preserve">
     <value>Demó kipróbálása</value>
   </data>
@@ -173,6 +179,9 @@ Amennyiben az app-ot háttérbe küldöd, úgy az automatikusan ki fog lépni a 
   <data name="NextPersonalizedDate" xml:space="preserve">
     <value>Következő testreszabott alkalom</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nem</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>Tartomány</value>
   </data>
@@ -193,5 +202,8 @@ Amennyiben az app-ot háttérbe küldöd, úgy az automatikusan ki fog lépni a 
   </data>
   <data name="StdDev" xml:space="preserve">
     <value>Szórás [%]</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Igen</value>
   </data>
 </root>

@@ -63,19 +63,14 @@ namespace PeriodTracker
         {
             var elapsedDays = TimeOfLastPeriod == DateTime.MinValue ? 0 : (date - TimeOfLastPeriod).Days;
             await _connection.Insert(new PeriodItem(date, elapsedDays));
-            var items = await GetHistoricalPeriodItems();
+            await UpdateFromDate(date);
+            await RunStatistics();
+        }
 
-            foreach (var item in items)
-            {
-                if(item.StartTime < date)
-                {
-                    continue;
-                }
-
-                var previousItem = items.TakeWhile(_ => _.StartTime < item.StartTime).LastOrDefault();
-                item.ElapsedDays = previousItem == null ? 0 : (item.StartTime - previousItem.StartTime).Days;
-                await _connection.UpdateItem(item);
-            }
+        public async Task RemoveDate(PeriodItem periodItem)
+        {
+            await _connection.Remove(periodItem);
+            await UpdateFromDate(periodItem.StartTime);
             await RunStatistics();
         }
 
@@ -104,6 +99,23 @@ namespace PeriodTracker
         public IEnumerable<DateTime> GetPersonalizedFutureDates(int count)
         {
             throw new NotImplementedException();
+        }
+
+        private async Task UpdateFromDate(DateTime date)
+        {
+            var items = await GetHistoricalPeriodItems();
+
+            foreach (var item in items)
+            {
+                if (item.StartTime < date)
+                {
+                    continue;
+                }
+
+                var previousItem = items.TakeWhile(_ => _.StartTime < item.StartTime).LastOrDefault();
+                item.ElapsedDays = previousItem == null ? 0 : (item.StartTime - previousItem.StartTime).Days;
+                await _connection.UpdateItem(item);
+            }
         }
 
         private void RunStatisticsInTask()

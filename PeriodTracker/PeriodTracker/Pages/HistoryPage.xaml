@@ -14,10 +14,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Text="{Binding StartTime, StringFormat='{}{0:yyyy/MMMM/dd}'}" HorizontalTextAlignment="Start" Margin="5" Shadow="{x:StaticResource Key=shadow}"/>
                         <Label Grid.Column="1" Text="{Binding ElapsedDays}" HorizontalTextAlignment="Start" Margin="5" Shadow="{x:StaticResource Key=shadow}"/>
+                        <Button Grid.Column="2" Text="✗" Command="{Binding RemoveDateCommand, Source={RelativeSource AncestorType={x:Type local:HistoryPageViewModel}}}" CommandParameter="{Binding}"/>
                     </Grid>
                 </Frame>
             </DataTemplate>

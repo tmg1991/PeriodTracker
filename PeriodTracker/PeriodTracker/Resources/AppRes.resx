@@ -129,6 +129,12 @@
   <data name="ComplementPageTitle" xml:space="preserve">
     <value>Complement</value>
   </data>
+  <data name="DeleteDateQuestion" xml:space="preserve">
+    <value>Would you like to delete selected date?</value>
+  </data>
+  <data name="DeleteDateTitle" xml:space="preserve">
+    <value>Delete date</value>
+  </data>
   <data name="DemoButtonText" xml:space="preserve">
     <value>Try out demo mode</value>
   </data>
@@ -173,6 +179,9 @@ Demo mode will be left in case the app loses focus or is sent to background.</va
   <data name="NextPersonalizedDate" xml:space="preserve">
     <value>Next personalized occasion</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
   </data>
@@ -193,5 +202,8 @@ Demo mode will be left in case the app loses focus or is sent to background.</va
   </data>
   <data name="StdDev" xml:space="preserve">
     <value>Standard deviation [%]</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

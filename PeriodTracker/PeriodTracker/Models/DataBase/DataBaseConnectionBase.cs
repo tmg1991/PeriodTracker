@@ -43,5 +43,12 @@ namespace PeriodTracker
                 DataBaseConnection.Update(periodItem);
             });
         }
+
+        public async Task Remove(IPeriodItem periodItem)
+        {
+            await Task.Run(() => {
+                DataBaseConnection.Delete(periodItem);
+            });
+        }
     }
 }

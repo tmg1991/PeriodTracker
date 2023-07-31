@@ -15,6 +15,7 @@
         int Maximum { get; }
         int Range { get; }
         Task SaveDate(DateTime date);
+        Task RemoveDate(PeriodItem periodItem);
         Task RunStatistics();
         Task<IEnumerable<PeriodItem>> GetHistoricalPeriodItems();
         IEnumerable<DateTime> GetNominalFutureDates(int count);
