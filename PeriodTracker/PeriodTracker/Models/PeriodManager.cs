@@ -125,9 +125,10 @@ namespace PeriodTracker
 
         private void EvaluateStats()
         {
-            Average = _historicalPeriodItems.Any() ? _historicalPeriodItems?.Select(_ => _.ElapsedDays)?.Average() ?? double.NaN : double.NaN;
-            StdDeviation = CalculateStdDev(_historicalPeriodItems?.Select(_ => _.ElapsedDays).ToArray());
-            var pastElapsedDays = _historicalPeriodItems?.Select(_ => _.ElapsedDays)?.Where(_ => _ != 0)?.ToArray();
+            var items = _historicalPeriodItems.Where(_ => _.ElapsedDays != 0);
+            Average = items.Any() ? items.Select(_ => _.ElapsedDays)?.Average() ?? double.NaN : double.NaN;
+            StdDeviation = CalculateStdDev(items.Select(_ => _.ElapsedDays).ToArray());
+            var pastElapsedDays = items?.Select(_ => _.ElapsedDays)?.ToArray();
             Minimum = (pastElapsedDays != null && pastElapsedDays.Any()) ? pastElapsedDays.Min() : 0;
             Maximum = (pastElapsedDays != null && pastElapsedDays.Any()) ? pastElapsedDays.Max() : 0;
             Range = Maximum - Minimum;
