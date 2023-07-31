@@ -9,6 +9,7 @@ Android Widget is available.
 
 ## Changelog
 
+**v1.4.0**: Add remove date functionality to history page    
 **v1.3.0**: Add chart to statistical page    
 **v1.2.0**: Give feedback to user after save; Fixed saving date multiple times    
 **v1.1.0**: Android widget is implemented  
