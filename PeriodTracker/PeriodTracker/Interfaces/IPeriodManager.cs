@@ -2,6 +2,7 @@
 {
     public interface IPeriodManager
     {
+        int MovingAverageWindow { get; }
         DateTime TimeOfLastPeriod { get; }
         DateTime TimeOfNextNominalPeriod { get; }
         DateTime TimeOfNextPersonalizedPeriod { get; }

@@ -19,15 +19,26 @@ namespace PeriodTracker
             set { _nextOccasion = value; NotifyPropertyChanged(); }
         }
 
-        private int _remainingDays;
+        private DateTime _nextPersonalizedOccasion;
+        public DateTime NextPersonalizedOccasion
+        {
+            get { return _nextPersonalizedOccasion; }
+            set { _nextPersonalizedOccasion = value; NotifyPropertyChanged(); }
+        }
 
+        private int _remainingDays;
         public int RemainingDays
         {
             get { return _remainingDays; }
             set { _remainingDays = value; NotifyPropertyChanged(); }
         }
 
-
+        private int _remainingPersonalizedDays;
+        public int RemainingPersonalizedDays
+        {
+            get { return _remainingPersonalizedDays; }
+            set { _remainingPersonalizedDays = value; NotifyPropertyChanged(); }
+        }
 
         public MainPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
@@ -58,6 +69,9 @@ namespace PeriodTracker
             LastOccasion = PeriodManager.TimeOfLastPeriod;
             NextOccasion = PeriodManager.TimeOfNextNominalPeriod;
             RemainingDays = PeriodManager.RemainingNominalDays;
+
+            NextPersonalizedOccasion = PeriodManager.TimeOfNextPersonalizedPeriod;
+            RemainingPersonalizedDays = PeriodManager.RemainingPersonalizedDays;
         }
 
     }

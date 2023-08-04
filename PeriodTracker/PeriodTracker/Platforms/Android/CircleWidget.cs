@@ -105,8 +105,10 @@ public class CircleWidget : AppWidgetProvider
         }
 
         Task.Run(() => { periodManager.RunStatistics(); }).Wait();
-        var remainingString = periodManager.RemainingNominalDays == int.MinValue ? "-" : periodManager.RemainingNominalDays.ToString();
+        var remainingNominalString = periodManager.RemainingNominalDays == int.MinValue ? "-" : periodManager.RemainingNominalDays.ToString();
+        var remainingPersonalizedString = periodManager.RemainingPersonalizedDays == int.MinValue ? "-" : periodManager.RemainingPersonalizedDays.ToString();
 
+        var remainingString = $"{remainingNominalString} | {remainingPersonalizedString}";
         updateViews.SetTextViewText(Resource.Id.remaining, remainingString);
         updateViews.SetTextViewText(Resource.Id.remaining_2_1, remainingString);
         updateViews.SetTextViewText(Resource.Id.remaining_2_2, remainingString);

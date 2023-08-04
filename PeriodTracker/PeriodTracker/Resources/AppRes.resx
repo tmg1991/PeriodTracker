@@ -182,6 +182,12 @@ Demo mode will be left in case the app loses focus or is sent to background.</va
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="NominalFutureDates" xml:space="preserve">
+    <value>Nominal oncoming periods</value>
+  </data>
+  <data name="PersonalizedFutureDates" xml:space="preserve">
+    <value>Personalized oncoming periods</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
   </data>

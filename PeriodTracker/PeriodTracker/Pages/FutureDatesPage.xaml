@@ -19,10 +19,18 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <CollectionView Grid.Row="0" ItemsSource="{Binding FutureDates}" SelectionMode="None" ItemTemplate="{StaticResource dateTemplate}" HorizontalOptions="Center"/>
-        <local:DemoPanel Grid.Row="1"/>
+        <Label Grid.Row="0" Text="{x:Static res:AppRes.NominalFutureDates}" FontAttributes="Bold"/>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding FutureDates}" SelectionMode="None" ItemTemplate="{StaticResource dateTemplate}" HorizontalOptions="Center"/>
+        <BoxView Grid.Row="2" HeightRequest="1" Color="DarkGray"/>
+        <Label Grid.Row="3" Text="{x:Static res:AppRes.PersonalizedFutureDates}" FontAttributes="Bold"/>
+        <CollectionView Grid.Row="4" ItemsSource="{Binding PersonalizedFutureDates}" SelectionMode="None" ItemTemplate="{StaticResource dateTemplate}" HorizontalOptions="Center"/>
+        <local:DemoPanel Grid.Row="5"/>
     </Grid>
 </ContentPage>

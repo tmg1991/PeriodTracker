@@ -40,7 +40,7 @@
                 <Label Grid.Row="4" Grid.Column="0" Text="{x:Static res:AppRes.Range}"/>
                 <Label Grid.Row="4" Grid.Column="1" Text="{Binding Range}"/>
 
-                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static res:AppRes.ChartTitle}" HorizontalOptions="CenterAndExpand"/>
+                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static res:AppRes.ChartTitle}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
                 <lvc:CartesianChart Grid.Row="7" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand"
                 Series="{Binding Series}"  WidthRequest="300" HeightRequest="250" TooltipPosition="Hidden">
                 </lvc:CartesianChart>

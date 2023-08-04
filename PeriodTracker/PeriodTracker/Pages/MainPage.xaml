@@ -12,9 +12,11 @@
             <local:IntToStringConverter x:Key="intToStringConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid Margin="10">
+    <Grid Margin="10" ColumnSpacing="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -37,8 +39,12 @@
         <Label Grid.Row="2" Grid.Column="1" Text="{Binding NextOccasion, Converter={StaticResource dateTimeToStringConverter}}"/>
         <Label Grid.Row="3" Grid.Column="0" Text="{x:Static res:AppRes.RemainingNominalDays}"/>
         <Label Grid.Row="3" Grid.Column="1" Text="{Binding RemainingDays, Converter={StaticResource intToStringConverter}}"/>
-        <Button Grid.Row="4" Grid.ColumnSpan="2" Text="{x:Static res:AppRes.SaveToday}" Command="{Binding SaveTodayCommand}" HeightRequest="50"/>
-        <local:DemoPanel Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="{x:Static res:AppRes.NextPersonalizedDate}"/>
+        <Label Grid.Row="4" Grid.Column="1" Text="{Binding NextPersonalizedOccasion, Converter={StaticResource dateTimeToStringConverter}}"/>
+        <Label Grid.Row="5" Grid.Column="0" Text="{x:Static res:AppRes.RemainingPersonalizedDate}"/>
+        <Label Grid.Row="5" Grid.Column="1" Text="{Binding RemainingPersonalizedDays, Converter={StaticResource intToStringConverter}}"/>
+        <Button Grid.Row="6" Grid.ColumnSpan="2" Text="{x:Static res:AppRes.SaveToday}" Command="{Binding SaveTodayCommand}" HeightRequest="50"/>
+        <local:DemoPanel Grid.Row="7" Grid.ColumnSpan="2"/>
     </Grid>
     <!--<ScrollView>
         <VerticalStackLayout

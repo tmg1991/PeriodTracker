@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace PeriodTracker
 {
@@ -15,6 +10,13 @@ namespace PeriodTracker
             get { return _futureDates; }
             set { _futureDates = value; NotifyPropertyChanged(); }
         }
+        private ObservableCollection<DateTime> _personalizedFutureDates;
+        public ObservableCollection<DateTime> PersonalizedFutureDates
+        {
+            get { return _personalizedFutureDates; }
+            set { _personalizedFutureDates = value; NotifyPropertyChanged(); }
+        }
+
 
 
         public FutureDatesViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
@@ -30,7 +32,9 @@ namespace PeriodTracker
 
         private void UpdateFutureDates()
         {
-            FutureDates = new ObservableCollection<DateTime>(PeriodManager.GetNominalFutureDates(12));
+            var futureMonths =  12;
+            FutureDates = new ObservableCollection<DateTime>(PeriodManager.GetNominalFutureDates(futureMonths));
+            PersonalizedFutureDates = new ObservableCollection<DateTime>(PeriodManager.GetPersonalizedFutureDates(futureMonths));
         }
     }
 }

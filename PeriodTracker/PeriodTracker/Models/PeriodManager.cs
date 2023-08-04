@@ -18,15 +18,16 @@ namespace PeriodTracker
 
         public DateTime TimeOfNextNominalPeriod { get; private set; }
 
-        public DateTime TimeOfNextPersonalizedPeriod => throw new NotImplementedException();
+        public DateTime TimeOfNextPersonalizedPeriod { get; private set; }
 
         public int RemainingNominalDays { get; private set; }
 
-        public int RemainingPersonalizedDays => throw new NotImplementedException();
+        public int RemainingPersonalizedDays { get; private set; }
 
         public int NominalPeriodFrequency => 28;
+        public int MovingAverageWindow => 3;
 
-        public int PersonalizedPeriodFrequency => throw new NotImplementedException();
+        public int PersonalizedPeriodFrequency { get; private set; }
 
         public double Average { get; private set; }
         public double StdDeviation { get; private set; }
@@ -53,6 +54,8 @@ namespace PeriodTracker
             TimeOfLastPeriod = _historicalPeriodItems?.OrderByDescending(_ => _.StartTime)?.FirstOrDefault()?.StartTime ?? DateTime.MinValue;
             TimeOfNextNominalPeriod = TimeOfLastPeriod == DateTime.MinValue ? DateTime.MinValue : TimeOfLastPeriod + TimeSpan.FromDays(NominalPeriodFrequency);
             RemainingNominalDays = TimeOfNextNominalPeriod == DateTime.MinValue ? int.MinValue : (TimeOfNextNominalPeriod - DateTime.Today).Days;
+
+            CalculatePersonalizedData();
 
             EvaluateStats();
 
@@ -81,24 +84,29 @@ namespace PeriodTracker
 
         public IEnumerable<DateTime> GetNominalFutureDates(int count)
         {
+            return GetFutureDates(count, TimeOfNextNominalPeriod, NominalPeriodFrequency);
+        }
+        public IEnumerable<DateTime> GetPersonalizedFutureDates(int count)
+        {
+            return GetFutureDates(count, TimeOfNextPersonalizedPeriod, PersonalizedPeriodFrequency);
+        }
+
+        private IEnumerable<DateTime> GetFutureDates(int count, DateTime nextPeriod, int frequency)
+        {
             List<DateTime> futureDates = new List<DateTime>();
 
-            if(TimeOfNextNominalPeriod == DateTime.MinValue)
+            if (nextPeriod == DateTime.MinValue || frequency == int.MinValue)
             {
                 return futureDates;
             }
 
-            for (int i = 0; i < count-1; i++)
+            for (int i = 0; i < count - 1; i++)
             {
-                var futureDate = TimeOfNextNominalPeriod + TimeSpan.FromDays( i * NominalPeriodFrequency);
+                var futureDate = nextPeriod + TimeSpan.FromDays(i * frequency);
                 futureDates.Add(futureDate);
             }
 
             return futureDates;
-        }
-        public IEnumerable<DateTime> GetPersonalizedFutureDates(int count)
-        {
-            throw new NotImplementedException();
         }
 
         private async Task UpdateFromDate(DateTime date)
@@ -121,6 +129,23 @@ namespace PeriodTracker
         private void RunStatisticsInTask()
         {
             Task.Run(async () => await RunStatistics()).Wait();
+        }
+
+        private void CalculatePersonalizedData()
+        {
+            var source = _historicalPeriodItems?.Reverse()?.Take(MovingAverageWindow)?.ToList();
+            if (source == null || source.Count != MovingAverageWindow)
+            {
+                PersonalizedPeriodFrequency = int.MinValue;
+                RemainingPersonalizedDays = int.MinValue;
+                TimeOfNextPersonalizedPeriod = DateTime.MinValue;
+            }
+            else
+            {
+                PersonalizedPeriodFrequency = (int)Math.Round(source.Select(_ => _.ElapsedDays).Average());
+                TimeOfNextPersonalizedPeriod = TimeOfLastPeriod + TimeSpan.FromDays(PersonalizedPeriodFrequency);
+                RemainingPersonalizedDays = (TimeOfNextPersonalizedPeriod - DateTime.Today).Days;
+            }
         }
 
         private void EvaluateStats()

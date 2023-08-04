@@ -252,6 +252,24 @@ namespace PeriodTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nominal oncoming periods.
+        /// </summary>
+        internal static string NominalFutureDates {
+            get {
+                return ResourceManager.GetString("NominalFutureDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personalized oncoming periods.
+        /// </summary>
+        internal static string PersonalizedFutureDates {
+            get {
+                return ResourceManager.GetString("PersonalizedFutureDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Range.
         /// </summary>
         internal static string Range {
