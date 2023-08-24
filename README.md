@@ -10,6 +10,8 @@ Android Widget is available.
 
 ## Changelog
 
+**v1.5.2**: Refactor    
+**v1.5.1**: Fix possible memory leak    
 **v1.5.0**: Evaluate future dates based on user's historical data    
 **v1.4.0**: Add remove date functionality to history page    
 **v1.3.0**: Add chart to statistical page    
