@@ -2,52 +2,29 @@
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace PeriodTracker
 {
     public partial class StatisticsPageViewModel : ViewModelBase
     {
+        [ObservableProperty]
         private ISeries[] _series;
-        public ISeries[] Series
-        {
-            get { return _series; }
-            set { _series = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private double _average;
-        public double Average
-        {
-            get { return _average; }
-            set { _average = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private double _stdDeviation;
-        public double StdDeviation
-        {
-            get { return _stdDeviation; }
-            set { _stdDeviation = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private int _minimum;
-        public int Minimum
-        {
-            get { return _minimum; }
-            set { _minimum = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private int _maximum;
-        public int Maximum
-        {
-            get { return _maximum; }
-            set { _maximum = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private int _range;
-        public int Range
-        {
-            get { return _range; }
-            set { _range = value; NotifyPropertyChanged(); }
-        }
 
         public StatisticsPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {

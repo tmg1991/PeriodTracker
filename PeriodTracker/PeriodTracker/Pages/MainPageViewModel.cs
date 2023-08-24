@@ -1,44 +1,25 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PeriodTracker.Resources;
 
 namespace PeriodTracker
 {
     public partial class MainPageViewModel : ViewModelBase
     {
+        [ObservableProperty]
         private DateTime _lastOccasion;
-        public DateTime LastOccasion
-        {
-            get { return _lastOccasion; }
-            set { _lastOccasion = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private DateTime _nextOccasion;
-        public DateTime NextOccasion
-        {
-            get { return _nextOccasion; }
-            set { _nextOccasion = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private DateTime _nextPersonalizedOccasion;
-        public DateTime NextPersonalizedOccasion
-        {
-            get { return _nextPersonalizedOccasion; }
-            set { _nextPersonalizedOccasion = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private int _remainingDays;
-        public int RemainingDays
-        {
-            get { return _remainingDays; }
-            set { _remainingDays = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private int _remainingPersonalizedDays;
-        public int RemainingPersonalizedDays
-        {
-            get { return _remainingPersonalizedDays; }
-            set { _remainingPersonalizedDays = value; NotifyPropertyChanged(); }
-        }
 
         public MainPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {

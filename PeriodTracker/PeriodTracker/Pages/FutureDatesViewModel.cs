@@ -1,23 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace PeriodTracker
 {
     public partial class FutureDatesViewModel : ViewModelBase
     {
+        [ObservableProperty]
         private ObservableCollection<DateTime> _futureDates;
-        public ObservableCollection<DateTime> FutureDates
-        {
-            get { return _futureDates; }
-            set { _futureDates = value; NotifyPropertyChanged(); }
-        }
+
+        [ObservableProperty]
         private ObservableCollection<DateTime> _personalizedFutureDates;
-        public ObservableCollection<DateTime> PersonalizedFutureDates
-        {
-            get { return _personalizedFutureDates; }
-            set { _personalizedFutureDates = value; NotifyPropertyChanged(); }
-        }
-
-
 
         public FutureDatesViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {

@@ -1,29 +1,16 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PeriodTracker.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PeriodTracker
 {
     public partial class ComplementPageViewModel : ViewModelBase
     {
+        [ObservableProperty]
         private DateTime _maximumDisplayedDate;
-        public DateTime MaximumDisplayedDate
-        {
-            get { return _maximumDisplayedDate; }
-            set { _maximumDisplayedDate = value; NotifyPropertyChanged(); }
-        }
 
+        [ObservableProperty]
         private DateTime _selectedDate;
-        public DateTime SelectedDate
-        {
-            get { return _selectedDate; }
-            set { _selectedDate = value; NotifyPropertyChanged(); }
-        }
-
 
         public ComplementPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
