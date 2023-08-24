@@ -7,19 +7,19 @@ namespace PeriodTracker
     public partial class MainPageViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private DateTime _lastOccasion;
+        private DateTime? _lastOccasion;
 
         [ObservableProperty]
-        private DateTime _nextOccasion;
+        private DateTime? _nextOccasion;
 
         [ObservableProperty]
-        private DateTime _nextPersonalizedOccasion;
+        private DateTime? _nextPersonalizedOccasion;
 
         [ObservableProperty]
-        private int _remainingDays;
+        private int? _remainingDays;
 
         [ObservableProperty]
-        private int _remainingPersonalizedDays;
+        private int? _remainingPersonalizedDays;
 
         public MainPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {

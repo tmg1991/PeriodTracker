@@ -6,15 +6,16 @@ namespace PeriodTracker
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int)
+            if (value == null)
             {
-                var dateTime = (int)value;
-                if (dateTime == int.MinValue)
-                {
-                    return "-";
-                }
-                return dateTime.ToString();
+                return "-";
             }
+
+            if (value is int integer)
+            {
+                return integer.ToString();
+            }
+
             return Binding.DoNothing;
         }
 

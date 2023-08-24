@@ -18,13 +18,13 @@ namespace PeriodTracker
         private double _stdDeviation;
 
         [ObservableProperty]
-        private int _minimum;
+        private int? _minimum;
 
         [ObservableProperty]
-        private int _maximum;
+        private int? _maximum;
 
         [ObservableProperty]
-        private int _range;
+        private int? _range;
 
         public StatisticsPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
