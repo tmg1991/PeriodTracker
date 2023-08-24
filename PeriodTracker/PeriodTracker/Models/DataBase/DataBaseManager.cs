@@ -19,6 +19,7 @@
         {
             await Task.Run(() =>
             {
+                DisposeDataBaseConnection();
                 _connection = new DemoDataBaseConnection();
                 _isAppInDemoMode = true;
                 NotifyDemoModeChanged();
@@ -30,6 +31,7 @@
         {
             await Task.Run(() =>
             {
+                DisposeDataBaseConnection();
                 _connection = new ProductionDataBaseConnection();
                 _isAppInDemoMode = false;
                 NotifyDemoModeChanged();
@@ -40,6 +42,15 @@
         private void NotifyDemoModeChanged()
         {
             DemoModeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void DisposeDataBaseConnection()
+        {
+            if(_connection != null)
+            {
+                _connection.Dispose();
+                _connection = null;
+            }
         }
     }
 }

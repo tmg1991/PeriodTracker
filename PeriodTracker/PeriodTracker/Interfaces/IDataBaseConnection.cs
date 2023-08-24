@@ -2,7 +2,7 @@
 
 namespace PeriodTracker
 {
-    public interface IDataBaseConnection
+    public interface IDataBaseConnection : IDisposable
     {
         Task Insert(IPeriodItem periodItem);
         Task Remove(IPeriodItem periodItem);
