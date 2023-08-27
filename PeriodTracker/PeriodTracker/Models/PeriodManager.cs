@@ -135,7 +135,7 @@
             }
             else
             {
-                PersonalizedPeriodFrequency = (int)Math.Round(source.Select(_ => _.ElapsedDays).Average());
+                PersonalizedPeriodFrequency = (int)Math.Round(source.Select(_ => _.ElapsedDays).Where(_ => _ != 0).Average());
                 TimeOfNextPersonalizedPeriod = TimeOfLastPeriod + TimeSpan.FromDays((int)PersonalizedPeriodFrequency);
                 RemainingPersonalizedDays = ((DateTime)TimeOfNextPersonalizedPeriod - DateTime.Today).Days;
             }
