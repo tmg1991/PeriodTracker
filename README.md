@@ -10,6 +10,7 @@ Android Widget is available.
 
 ## Changelog
 
+**v1.5.3**: Fix calculation of personalized frequency    
 **v1.5.2**: Refactor    
 **v1.5.1**: Fix possible memory leak    
 **v1.5.0**: Evaluate future dates based on user's historical data    
