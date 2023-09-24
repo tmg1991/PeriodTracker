@@ -10,6 +10,9 @@ Android Widget is available.
 
 ## Changelog
 
+**v1.7.1**: Show date in confirmation dialog    
+**v1.7.0**: Show only necessary and non-redundant info in Android widget    
+**v1.6.0**: Add personalized frequency to statistics page    
 **v1.5.3**: Fix calculation of personalized frequency    
 **v1.5.2**: Refactor    
 **v1.5.1**: Fix possible memory leak    
