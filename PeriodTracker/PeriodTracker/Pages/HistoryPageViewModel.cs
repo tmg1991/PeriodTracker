@@ -20,7 +20,8 @@ namespace PeriodTracker
                 return;
             }
 
-            bool answer = await Application.Current.MainPage.DisplayAlert(Resources.AppRes.DeleteDateTitle, Resources.AppRes.DeleteDateQuestion, Resources.AppRes.Yes, Resources.AppRes.No);
+            string title = $"{Resources.AppRes.DeleteDateTitle}{Environment.NewLine}{periodItem.StartTime.ToString("yyyy/MMMM/dd")}";
+            bool answer = await Application.Current.MainPage.DisplayAlert(title, Resources.AppRes.DeleteDateQuestion, Resources.AppRes.Yes, Resources.AppRes.No);
             if (!answer)
             {
                 return;
