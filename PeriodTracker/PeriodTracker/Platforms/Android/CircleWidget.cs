@@ -105,10 +105,8 @@ public class CircleWidget : AppWidgetProvider
         }
 
         Task.Run(() => { periodManager.RunStatistics(); }).Wait();
-        var remainingNominalString = periodManager.RemainingNominalDays == null ? "-" : periodManager.RemainingNominalDays.ToString();
-        var remainingPersonalizedString = periodManager.RemainingPersonalizedDays == null ? "-" : periodManager.RemainingPersonalizedDays.ToString();
-
-        var remainingString = $"{remainingNominalString} | {remainingPersonalizedString}";
+        
+        var remainingString = GetRemainingDays(periodManager);
         updateViews.SetTextViewText(Resource.Id.remaining, remainingString);
         updateViews.SetTextViewText(Resource.Id.remaining_2_1, remainingString);
         updateViews.SetTextViewText(Resource.Id.remaining_2_2, remainingString);
@@ -120,4 +118,26 @@ public class CircleWidget : AppWidgetProvider
         return updateViews;
     }
 
+    private string GetRemainingDays(IPeriodManager periodManager)
+    {
+        if (periodManager.RemainingNominalDays == null)
+        {
+            return "-";
+        }
+
+        if (periodManager.RemainingPersonalizedDays == null)
+        {
+            return periodManager.RemainingNominalDays.ToString();
+        }
+
+        if (periodManager.RemainingNominalDays == periodManager.RemainingPersonalizedDays)
+        {
+            return periodManager.RemainingNominalDays.ToString();
+        }
+
+        var remainingNominalString = periodManager.RemainingNominalDays.ToString();
+        var remainingPersonalizedString = periodManager.RemainingPersonalizedDays.ToString();
+
+        return $"{remainingNominalString} | {remainingPersonalizedString}";
+    }
 }
