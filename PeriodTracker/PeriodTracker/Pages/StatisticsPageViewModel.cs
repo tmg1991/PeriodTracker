@@ -26,6 +26,9 @@ namespace PeriodTracker
         [ObservableProperty]
         private int? _range;
 
+        [ObservableProperty]
+        private double _personalizedFrequency;
+
         public StatisticsPageViewModel(IDataBaseManager dataBaseManager, IPeriodManager periodManager) : base(dataBaseManager, periodManager)
         {
             PeriodManager.StatisticsChanged += PeriodManager_StatisticsChanged;
@@ -51,6 +54,7 @@ namespace PeriodTracker
             Minimum = PeriodManager.Minimum;
             Maximum = PeriodManager.Maximum;
             Range = PeriodManager.Range;
+            PersonalizedFrequency = PeriodManager.PersonalizedPeriodFrequency == null ? double.NaN : (double)PeriodManager.PersonalizedPeriodFrequency;
         }
 
         private async Task UpdateChart()

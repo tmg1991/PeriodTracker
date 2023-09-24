@@ -17,6 +17,8 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -40,12 +42,16 @@
                 <Label Grid.Row="4" Grid.Column="0" Text="{x:Static res:AppRes.Range}"/>
                 <Label Grid.Row="4" Grid.Column="1" Text="{Binding Range}"/>
 
-                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static res:AppRes.ChartTitle}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
-                <lvc:CartesianChart Grid.Row="7" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand"
+                <Label Grid.Row="5" Grid.Column="0" Text="{x:Static res:AppRes.PersonalizedFrequency}"/>
+                <Label Grid.Row="5" Grid.Column="1" Text="{Binding PersonalizedFrequency}"/>
+
+                <Rectangle Grid.Row="6" Grid.ColumnSpan="2" Stroke="DarkGray" Margin="10,0" HeightRequest="2"/>
+                <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static res:AppRes.ChartTitle}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                <lvc:CartesianChart Grid.Row="8" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand"
                 Series="{Binding Series}"  WidthRequest="300" HeightRequest="250" TooltipPosition="Hidden">
                 </lvc:CartesianChart>
 
-                <local:DemoPanel Grid.Row="8" Grid.ColumnSpan="2"/>
+                <local:DemoPanel Grid.Row="9" Grid.ColumnSpan="2"/>
             </Grid>
     </VerticalStackLayout>
     </ScrollView>

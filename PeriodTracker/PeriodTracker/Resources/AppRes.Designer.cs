@@ -261,6 +261,15 @@ namespace PeriodTracker.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Personalized frequency.
+        /// </summary>
+        internal static string PersonalizedFrequency {
+            get {
+                return ResourceManager.GetString("PersonalizedFrequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personalized oncoming periods.
         /// </summary>
         internal static string PersonalizedFutureDates {

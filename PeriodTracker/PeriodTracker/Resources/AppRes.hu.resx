@@ -185,6 +185,9 @@ Amennyiben az app-ot háttérbe küldöd, úgy az automatikusan ki fog lépni a 
   <data name="NominalFutureDates" xml:space="preserve">
     <value>Következő névleges alkalmak</value>
   </data>
+  <data name="PersonalizedFrequency" xml:space="preserve">
+    <value>Testreszabott periodicitás</value>
+  </data>
   <data name="PersonalizedFutureDates" xml:space="preserve">
     <value>Következő testreszabott alkalmak</value>
   </data>
